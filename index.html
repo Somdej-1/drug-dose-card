@@ -1007,5 +1007,22 @@ document.addEventListener('DOMContentLoaded',()=>{
 /* ── INIT ─────────────────────────────────────────────────── */
 updateAll();
 </script>
+<script>
+  window.addEventListener('load', function() {
+    // ⚠️ เอา Web App URL ที่ได้จาก Google Apps Script มาวางในเครื่องหมายคำพูดด้านล่าง
+    const webhookUrl = 'https://script.google.com/macros/s/AKfycbx9UHEaLFCHnFvLfLipnYe1O5OK1mWuQheXdaZfvLoJe5rUOLiIqL79bIuabaNH7lGhog/exec';
+
+    fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        event: 'page_view'
+      }),
+      mode: 'no-cors' // ใส่ no-cors ป้องกันปัญหาการข้ามโดเมน
+    }).catch(error => console.log('Tracking Error:', error));
+  });
+</script>
 </body>
 </html>
